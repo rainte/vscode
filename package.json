@@ -6,11 +6,11 @@
   "keywords": [
     "插件"
   ],
-  "version": "1.0.2",
+  "version": "1.0.0",
   "publisher": "hub",
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.73.1"
+    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
