@@ -33,16 +33,13 @@ class Pic extends Event {
     super(section)
 
     this.PicGo.setConfig({ picBed: this.env.get('bed') })
-    this.PicGo.helper.beforeUploadPlugins.register(
-      'beforeRename',
-      this.beforeRename(),
-    )
+    this.PicGo.helper.beforeUploadPlugins.register('beforeRename', this.beforeRename())
     this.PicGo.on('finished', (ctx: IPicGo) => this.finished(ctx))
   }
 
   async upload(input: string[]): Promise<any> {
     return await Promise.allSettled([
-      this.progress('files uploading...', async progress => {
+      this.progress('files uploading...', async (progress) => {
         return await new Promise<void>((resolve, reject) => {
           const onProgress = (p: number) => {
             progress.report({ increment: p })
@@ -60,9 +57,7 @@ class Pic extends Event {
           }
 
           const onNotification = (notice: any) => {
-            const message = `${notice.title}! ${notice.body || ''}${
-              notice.text || ''
-            }`
+            const message = `${notice.title}! ${notice.body || ''}${notice.text || ''}`
             offListeners()
             reject(message)
             this.tip(Tip.error, message)
@@ -79,7 +74,7 @@ class Pic extends Event {
           this.PicGo.on('notification', onNotification)
         })
       }),
-      this.PicGo.upload(input),
+      this.PicGo.upload(input)
     ]).catch(() => {})
   }
 
@@ -95,7 +90,7 @@ class Pic extends Event {
           d: this.Date.format('DD'),
           h: this.Date.format('HH'),
           i: this.Date.format('mm'),
-          s: this.Date.format('ss'),
+          s: this.Date.format('ss')
         }
 
         ctx.output.forEach((file: IImgInfo) => {
@@ -104,7 +99,7 @@ class Pic extends Event {
 
           file.fileName = this.rename(template, input)
         })
-      },
+      }
     }
   }
 
@@ -125,7 +120,7 @@ class Pic extends Event {
 
     const editor = vscode.window.activeTextEditor
     if (editor) {
-      editor.edit(textEditor => {
+      editor.edit((textEditor) => {
         textEditor.replace(editor.selection, url)
         this.emit(EVSHooks.updated, url)
         this.tip(Tip.info, 'file uploaded successfully.')
@@ -148,6 +143,6 @@ export default async (section: string): Promise<any> => {
   const files = await vscode.window.showOpenDialog({ canSelectMany: true })
 
   if (files?.length) {
-    return new Pic(section).upload(files.map(file => file.fsPath))
+    return new Pic(section).upload(files.map((file) => file.fsPath))
   }
 }

@@ -2,12 +2,12 @@ import { EventEmitter } from 'events'
 import * as vscode from 'vscode'
 
 export enum EVSHooks {
-  updated = 'updated',
+  updated = 'updated'
 }
 
 export enum Tip {
   info,
-  error,
+  error
 }
 
 export default class Event extends EventEmitter {
@@ -28,16 +28,16 @@ export default class Event extends EventEmitter {
         message?: string
         increment?: number
       }>,
-      token: vscode.CancellationToken,
-    ) => Thenable<R>,
+      token: vscode.CancellationToken
+    ) => Thenable<R>
   ) {
     vscode.window.withProgress(
       {
         location: vscode.ProgressLocation.Notification,
         title: this.section.toUpperCase() + ': ' + message,
-        cancellable: false,
+        cancellable: false
       },
-      callback,
+      callback
     )
   }
 
