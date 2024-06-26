@@ -7,11 +7,18 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/class-name-casing": "warn",
-    "@typescript-eslint/semi": "warn",
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "import",
+        "format": ["camelCase", "PascalCase"]
+      }
+    ],
+    "@typescript-eslint/semi": "off",
     "curly": "warn",
     "eqeqeq": "warn",
     "no-throw-literal": "warn",
     "semi": "off"
-  }
+  },
+  "ignorePatterns": ["out", "dist", "**/*.d.ts"]
 }
