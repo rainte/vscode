@@ -8,7 +8,9 @@
 Visual Studio Code 插件。
 
 ```
-vsce publish # 发布.
+npm install -g @vscode/vsce
+vsce package
+vsce publish
 ```
 
 ### Pic
