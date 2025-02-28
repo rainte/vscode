@@ -283,7 +283,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/inquirer": "^9.0.7",
+    "@types/inquirer": "^0.0.42",
     "@types/mocha": "^10.0.10",
     "@types/node": "~22.13.5",
     "@types/vscode": "^1.97.0",
